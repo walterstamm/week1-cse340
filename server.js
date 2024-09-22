@@ -19,6 +19,7 @@ app.set("layout", "./layouts/layout") // not at views root
  * Routes
  *************************/
 app.use(static)
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
