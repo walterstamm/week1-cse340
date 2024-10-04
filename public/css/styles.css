@@ -364,4 +364,64 @@ footer {
     color: white;
     margin-top: 20px;
   }
+
+
+  /* Inventory Display #########################################################################################*/
+  #inv-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  #inv-display li {
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #inv-display li img {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+
+  #inv-display .namePrice {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  #inv-display .namePrice hr {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #inv-display .namePrice h2 {
+    margin: 0;
+    height: 2.4em;
+    overflow: hidden;
+    font-size: 1.2em;
+  }
+
+  #inv-display .namePrice span {
+    display: block;
+    margin-top: auto;
+  }
 }
+
+
+
+
+
