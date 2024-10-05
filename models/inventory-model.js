@@ -28,6 +28,8 @@ async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
+
+// Get inventory by inventory id
 async function getInventoryByInventoryId(inv_id){
   try {
     const data = await pool.query(
