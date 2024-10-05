@@ -27,6 +27,11 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.get("/",baseController.buildHome)
 app.use("/inv", inventoryRoute)
 
+// route to force a 500 error
+app.get('/get-error-500', (req, res, next) => {
+  throw new Error('This is a forced 500 error');
+});
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -36,6 +41,19 @@ app.use(async (req, res, next) => {
 * Express Error Handler
 * Place after all other middleware
 *************************/
+// Middleware to handle errors
+app.use(async (err, req, res, next) => {
+  console.error(err.stack);
+  const nav = await utilities.getNav(); 
+  const status = err.status || 500;
+  const message = (status === 500) ? 'Oh no! There was a crash. We are working on it.' : err.message;
+  res.status(status).render("errors/error", {
+    title: `Error ${status}`,
+    message,
+    nav
+  });
+});
+
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
@@ -46,6 +64,8 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
