@@ -30,23 +30,37 @@ header {
   text-align: center;
 }
 
-nav ul {
-  list-style-type: none;
+
+/* Navigation #########################################################################################*/
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #4c4c4c;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
   padding: 10px 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-content: space-around;
+  width: 100%;
 }
 
 nav ul li {
-  padding: 5px 0;
+  padding: 5px 10px;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  display: block;
+  text-align: center;
 }
+
+
 
 .account {
   text-align: center;
@@ -269,7 +283,7 @@ footer {
   text-align: center;
 }
 
-
+/* Responsive Design ########################################################################################################################################################################*/
 /* Estilos para resoluciones grandes */
 @media screen and (min-width: 768px) {
   
@@ -305,29 +319,37 @@ footer {
     color: white; 
   }
 
+  
+
   /* Navigation Styles */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4c4c4c;
+  }
+  
   nav ul {
-    list-style: none; 
-    display: flex; 
-    gap: 20px; 
-    background-color: darkgray; 
+    display: flex;
+    list-style-type: none;
+    padding: 10px 0;
+    justify-content: space-around;
+    width: 100%;
   }
-
+  
   nav ul li {
-    margin-right: 15px;
+    padding: 5px 10px;
   }
-
+  
   nav ul li a {
     color: white;
-    text-decoration: none; 
+    text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
-    transition: color 0.3s ease; 
+    display: block;
+    text-align: center;
   }
 
-  nav ul li a:hover {
-    color: #3cc4dc; 
-  }
+
 
   .account {
     font-size: 16px;
@@ -599,6 +621,7 @@ footer {
     grid-row: 1 / 2;
     text-align: center;
   }
+
 
 
   }
