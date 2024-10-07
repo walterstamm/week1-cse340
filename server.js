@@ -9,6 +9,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
+const bodyParser = require("body-parser")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
@@ -44,6 +45,8 @@ app.use(function(req, res, next){
 /* ***********************
  * Routes
  *************************/
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(static)
 //index route 
 app.get("/", utilities.handleErrors(baseController.buildHome))
@@ -65,6 +68,8 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 // Middleware to handle errors
+
+
 app.use(async (err, req, res, next) => {
   console.error(err.stack);
   const nav = await utilities.getNav(); 
