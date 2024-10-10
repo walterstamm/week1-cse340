@@ -283,6 +283,13 @@ footer {
   text-align: center;
 }
 
+.notice {
+  color: #e05858;
+  font-size: 20px;
+  margin: 10px;
+  list-style-type: disclosure-closed;
+}
+
 /* Responsive Design ########################################################################################################################################################################*/
 /* Estilos para resoluciones grandes */
 @media screen and (min-width: 768px) {
