@@ -90,4 +90,27 @@ invCont.buildAddInventory = async function (req, res, next) {
   })
 }
 
+
+invCont.addInventory = async function (req, res, next) {
+  const classification_id = req.body.classification_id
+  const inv_make = req.body.inv_make
+  const inv_model = req.body.inv_model
+  const inv_description = req.body.inv_description
+  const inv_image = req.body.inv_image
+  const inv_thumbnail = req.body.inv_thumbnail
+  const inv_price = req.body.inv_price
+  const inv_color = req.body.inv_color
+  const inv_miles = req.body.inv_miles
+  const inv_year = req.body.inv_year
+  const data = await invModel.addInventory(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_color, inv_miles, inv_year)
+  req.flash("notice", "New vehicle added")
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav: await utilities.getNav(),
+    errors: null,
+    notice: req.flash("notice"),
+  })
+}
+
+
 module.exports = invCont

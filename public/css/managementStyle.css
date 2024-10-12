@@ -15,6 +15,138 @@
     margin-bottom: 15px;
 }
 
+.for-group-add-classification {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.add-classification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    background-color: #f5f5f5;
+}
+
+.form-add-classification {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-add-classification input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-add-classification button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-add-classification button:hover {
+    background-color: #0056b3;
+}
+
+.add-classification-container h2 {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 24px;
+}
+
+.form-add-classification textarea {
+        height: 100px;
+        resize: none;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+.select-classification {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+    /* Inventory */
+
+.add-inventory-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 60vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.form-add-inventory {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+.form-add-inventory input,
+.form-add-inventory textarea,
+.form-add-inventory select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-add-inventory button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-add-inventory button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
 
 @media screen and (min-width: 768px) {
     .redirect-links {
@@ -106,6 +238,59 @@
         border: 1px solid #e0e0e0;
         border-radius: 4px;
         font-size: 14px;
+    }
+
+
+
+    /* Inventory */
+
+    .add-inventory-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Alineación al inicio */
+        min-height: 60vh; /* Altura mínima */
+        background-color: #f5f5f5; /* Color de fondo */
+        padding: 20px; /* Espaciado interno */
+    }
+    
+    .form-add-inventory {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60vh; /* Ancho del formulario */
+        padding: 30px; /* Espaciado interno */
+        background-color: #ffffff; /* Color de fondo del formulario */
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+        overflow: auto; /* Permitir desplazamiento si es necesario */
+    }
+    
+    .form-add-inventory input,
+    .form-add-inventory textarea,
+    .form-add-inventory select {
+        width: 100%; /* Ancho completo */
+        padding: 12px; /* Espaciado interno */
+        margin-bottom: 15px; /* Espaciado entre elementos */
+        border: 1px solid #e0e0e0; /* Borde */
+        border-radius: 4px; /* Bordes redondeados */
+        font-size: 14px; /* Tamaño de fuente */
+    }
+    
+    .form-add-inventory button {
+        width: 100%; /* Ancho completo */
+        padding: 12px; /* Espaciado interno */
+        background-color: #007bff; /* Color de fondo del botón */
+        color: #ffffff; /* Color del texto */
+        border: none; /* Sin borde */
+        border-radius: 4px; /* Bordes redondeados */
+        font-size: 16px; /* Tamaño de fuente */
+        cursor: pointer; /* Cambiar cursor al pasar */
+        transition: background-color 0.3s ease; /* Transición suave */
+    }
+    
+    .form-add-inventory button:hover {
+        background-color: #0056b3; /* Color de fondo al pasar */
     }
 
 
