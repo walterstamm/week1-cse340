@@ -145,6 +145,17 @@
 }
 
 
+#addInventoryForm input:invalid, #addInventoryForm textarea:invalid, #addInventoryForm select:invalid {
+    border: 2px solid red;
+}
+
+#addInventoryForm input:valid, #addInventoryForm textarea:valid, #addInventoryForm select:valid {
+    border: 2px solid green;
+}
+
+
+
+
 
 
 
