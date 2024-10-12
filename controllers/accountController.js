@@ -12,6 +12,7 @@ async function buildLogin(req, res, next) {
       title: "Login",
       nav,
       errors: null,
+      notice: req.flash("notice"),
     })
   }
   
@@ -26,6 +27,7 @@ async function buildRegister(req, res, next) {
     title: "Register",
     nav,
     errors: null,
+    notice: req.flash("notice"),
   })
 }
 
@@ -56,7 +58,6 @@ async function buildRegister(req, res, next) {
          account_email,
          hashedPassword
         )
-        
         if (regResult) {
             req.flash(
                 "notice",
@@ -66,6 +67,7 @@ async function buildRegister(req, res, next) {
         title: "Login",
         nav,
         errors: null,
+        notice: req.flash("notice"),
       })
     } else {
         req.flash("notice", "Sorry, the registration failed.")

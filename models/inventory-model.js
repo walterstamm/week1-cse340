@@ -44,5 +44,14 @@ async function getInventoryByInventoryId(inv_id){
 }
 
 
+async function addClassification(classification_name){
+  try {
+    const data = await pool.query("INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *", [classification_name])
+    return data.rows[0]
+  } catch (error) {
+    console.error("addClassification error " + error)
+  }
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, addClassification}

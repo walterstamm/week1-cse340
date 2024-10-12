@@ -1,0 +1,113 @@
+.page-title-management {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.redirect-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.redirect-link {
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .redirect-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px;
+    }
+    
+    .redirect-link {
+        text-decoration: none;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+
+    .for-group-add-classification {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+    }
+
+    .add-classification-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        background-color: #f5f5f5;
+    }
+
+    .form-add-classification {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60vh;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-add-classification input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .form-add-classification button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-add-classification button:hover {
+        background-color: #0056b3;
+    }
+
+    .add-classification-container h2 {
+        margin-bottom: 20px;
+        color: #333333;
+        font-size: 24px;
+    }
+
+    .form-add-classification textarea {
+        height: 100px;
+        resize: none;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .select-classification {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+
+
+}

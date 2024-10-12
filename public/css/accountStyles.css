@@ -1,5 +1,6 @@
 /* Estilos para resoluciones grandes */
 @media screen and (min-width: 768px) {
+
     .login-container {
         display: flex;
         flex-direction: column;
@@ -167,6 +168,7 @@
 
 /* Estilos para resoluciones móviles */
 @media screen and (max-width: 767px) {
+
     .login-container  {
         display: flex;
         justify-content: center;

@@ -1,0 +1,35 @@
+<% if (title) { %>
+    <h1 class="page-title-management"><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+      <% if (notice) { %>
+        <div class="alert alert-warning">
+          <%= notice %>
+        </div>
+      <% } %>
+
+
+      <div class="add-classification-container">
+        <h2>Create new classification</h2>
+        <p>Classification name must contain only letters</p>
+        <form id="addClassificationForm" action="/inv/add-classification" method="post" class="form-add-classification">
+            <div class="form-group ">
+                <label for="classification_name">Classification Name:</label>
+                <input type="text" id="classification_name"  name="classification_name" required pattern="[a-zA-Z]*" title="Classification name must contain only letters">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add Classification</button>
+            </div>
+        </form>
+    </div>

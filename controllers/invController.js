@@ -35,4 +35,59 @@ invCont.buildByInventoryId = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build inventory management view
+ * ************************** */
+invCont.buildManagement = async function (req, res, next) {
+  res.render("./inventory/management",
+    {
+      title: "Vehicle Management",
+      nav: await utilities.getNav(),
+      errors: null,
+      notice: req.flash("notice"),
+    } 
+  )
+}
+
+
+/* ***************************
+ *  Build add classification view
+ * ************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav: await utilities.getNav(),
+    errors: null,
+    notice: req.flash("notice"),
+  })
+}
+
+
+
+/* ***************************
+ *  Add classification
+ * ************************** */
+invCont.addClassification = async function (req, res, next) {
+  const classification_name = req.body.classification_name
+  const data = await invModel.addClassification(classification_name)
+  req.flash("notice", "New classification added")
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav: await utilities.getNav(),
+    errors: null,
+    notice: req.flash("notice"),
+  })
+}
+
+
+invCont.buildAddInventory = async function (req, res, next) {
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory",
+    nav: await utilities.getNav(),
+    classificationList: await utilities.buildClassificationList(),
+    errors: null,
+    notice: req.flash("notice"),
+  })
+}
+
 module.exports = invCont

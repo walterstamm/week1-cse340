@@ -1,0 +1,28 @@
+<% if (title) { %>
+    <h1 class="page-title-management"><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+      <% if (notice) { %>
+        <div class="alert alert-warning">
+          <%= notice %>
+        </div>
+      <% } %>
+
+      <div class="redirect-links">
+        <a href="/inv/add-classification" class="redirect-link">Add new classification</a>
+        <a href="/inv/add-inventory" class="redirect-link">Add new inventory</a>
+      </div>
+      
+
+      

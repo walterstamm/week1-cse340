@@ -11,6 +11,12 @@
       <%  }) %>
        </ul>
       <% } %>
+
+      <% if (notice) { %>
+        <div class="alert alert-warning">
+            <%= notice %>
+        </div>
+    <% } %>
     
     <div class="register-container">
         <form id="registerForm" action="/account/register" method="post" class="register-form">
