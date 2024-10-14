@@ -1,0 +1,27 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+    <% } %>
+
+    <% if (notice) { %>
+        <div class="alert alert-warning">
+          <%= notice %>
+        </div>
+    <% } %>
+      
+
+    <div class="account-container">
+        <h2>Welcome to your account</h2>
+        <p>Here you can manage your account information and view your order history.</p>
+    </div>
+
+

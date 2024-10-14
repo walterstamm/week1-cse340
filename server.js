@@ -8,6 +8,7 @@
 const session = require("express-session")
 const pool = require('./database/')
 const express = require("express")
+const cookieParser = require("cookie-parser")
 const expressLayouts = require("express-ejs-layouts")
 const bodyParser = require("body-parser")
 const env = require("dotenv").config()
@@ -43,11 +44,13 @@ app.use(function(req, res, next){
   next()
 })
 /* ***********************
- * Routes
- *************************/
+* Routes
+*************************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(static)
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 //index route 
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.get("/",baseController.buildHome)
