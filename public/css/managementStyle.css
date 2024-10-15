@@ -259,49 +259,49 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Alineación al inicio */
-        min-height: 60vh; /* Altura mínima */
-        background-color: #f5f5f5; /* Color de fondo */
-        padding: 20px; /* Espaciado interno */
+        justify-content: flex-start; 
+        min-height: 60vh; 
+        background-color: #f5f5f5; 
+        padding: 20px;
     }
     
     .form-add-inventory {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 60vh; /* Ancho del formulario */
-        padding: 30px; /* Espaciado interno */
-        background-color: #ffffff; /* Color de fondo del formulario */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-        overflow: auto; /* Permitir desplazamiento si es necesario */
+        width: 60vh; 
+        padding: 30px; 
+        background-color: #ffffff;
+        border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        overflow: auto; 
     }
     
     .form-add-inventory input,
     .form-add-inventory textarea,
     .form-add-inventory select {
-        width: 100%; /* Ancho completo */
-        padding: 12px; /* Espaciado interno */
-        margin-bottom: 15px; /* Espaciado entre elementos */
-        border: 1px solid #e0e0e0; /* Borde */
-        border-radius: 4px; /* Bordes redondeados */
-        font-size: 14px; /* Tamaño de fuente */
+        width: 100%; 
+        padding: 12px;
+        margin-bottom: 15px; 
+        border: 1px solid #e0e0e0; 
+        border-radius: 4px; 
+        font-size: 14px; 
     }
     
     .form-add-inventory button {
-        width: 100%; /* Ancho completo */
-        padding: 12px; /* Espaciado interno */
-        background-color: #007bff; /* Color de fondo del botón */
-        color: #ffffff; /* Color del texto */
-        border: none; /* Sin borde */
-        border-radius: 4px; /* Bordes redondeados */
-        font-size: 16px; /* Tamaño de fuente */
-        cursor: pointer; /* Cambiar cursor al pasar */
-        transition: background-color 0.3s ease; /* Transición suave */
+        width: 100%; 
+        padding: 12px; 
+        background-color: #007bff; 
+        color: #ffffff; 
+        border: none; 
+        border-radius: 4px; 
+        font-size: 16px; 
+        cursor: pointer; 
+        transition: background-color 0.3s ease; 
     }
     
     .form-add-inventory button:hover {
-        background-color: #0056b3; /* Color de fondo al pasar */
+        background-color: #0056b3; 
     }
 
 
@@ -316,7 +316,16 @@
         padding: 10px;
         text-align: left;
         border: 1px solid #e0e0e0;
-        border-radius: 4px;
+        border-radius: 4px;   
     }
+
+    #editInventoryForm button:disabled  {
+        background-color: #ccc;
+        color: #fff;
+        cursor: not-allowed;
+    }
+
+
+
 
 }

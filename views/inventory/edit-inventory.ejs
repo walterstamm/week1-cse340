@@ -21,19 +21,19 @@
 
 
       <div class="add-inventory-container">
-        <h2>Create new inventory item</h2>
-        <form id="addInventoryForm" action="/inv/add-inventory" method="post" class="form-add-inventory">
+        <h2>Edit Inventory Item</h2>
+        <form id="editInventoryForm" action="/inv/update" method="post" class="form-add-inventory">
             <div class="form-group">
                 <label for="classification_name">Classification</label>
                 <%- classificationList %>
             </div>
             <div class="form-group">
               <label for="inv_make">Make</label>
-              <input type="text" id="inv_make" name="inv_make" value="<%=locals.inv_make %>" required pattern="[a-zA-Z0-9\s]*" title="Make must contain only letters and numbers" minlength="3" maxlength="30" placeholder="min 3 characters">
+              <input type="text" id="inv_make" name="inv_make" value="<%=locals.inv_make %>" required pattern="[a-zA-Z0-9]*" title="Make must contain only letters and numbers" minlength="3" maxlength="30" placeholder="min 3 characters">
             </div>
             <div class="form-group">
               <label for="inv_model">Model</label>
-              <input type="text" id="inv_model" name="inv_model" value="<%= locals.inv_model %>" required pattern="[a-zA-Z0-9\s]*" title="Model must contain only letters and numbers" minlength="3" maxlength="30" placeholder="min 3 characters">
+              <input type="text" id="inv_model" name="inv_model" value="<%= locals.inv_model %>" required pattern="[a-zA-Z0-9\s]*" title="Model must contain only letters, numbers, and spaces" minlength="3" maxlength="30" placeholder="min 3 characters">
             </div>
             <div class="form-group">
               <label for="inv_description">Description</label>
@@ -61,11 +61,15 @@
             </div>
             <div class="form-group">
               <label for="inv_color">Color</label>
-              <input type="text" id="inv_color" name="inv_color" required pattern="[a-zA-Z0-9\s]*" value="<%= locals.inv_color %>" title="Color must contain only letters and numbers" minlength="3" maxlength="30" placeholder="min 3 characters">
+              <input type="text" id="inv_color" name="inv_color" required pattern="[a-zA-Z0-9\s]*" value="<%= locals.inv_color %>" title="Color must contain only letters" minlength="3" maxlength="30" placeholder="min 3 characters">
             </div>
+            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Add Classification</button>
+                <button type="submit" class="btn btn-primary" disabled >Update Vehicle</button>
             </div>
         </form>
     </div>
 
+    <script src="/js/inv-update.js"></script>
+
+    <!-- ../../js/inventory.js -->
