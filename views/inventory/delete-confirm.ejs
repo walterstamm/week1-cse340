@@ -1,0 +1,50 @@
+<% if (title) { %>
+    <h1 class="page-title-management"><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+      <% if (notice) { %>
+        <div class="alert alert-warning">
+          <%= notice %>
+        </div>
+      <% } %>
+
+
+      <div class="add-inventory-container">
+        <h2>Delete Inventory Item</h2>
+        <p>Are you sure you want to delete this inventory item?</p>
+        <form id="deleteInventoryForm" action="/inv/delete-inventory" method="post" class="form-add-inventory">
+           
+            <div class="form-group">
+              <label for="inv_make">Make</label>
+              <input type="text" id="inv_make" disabled name="inv_make" value="<%=locals.inv_make %>" required pattern="[a-zA-Z0-9]*" title="Make must contain only letters and numbers" minlength="3" maxlength="30" placeholder="min 3 characters">
+            </div>
+            <div class="form-group">
+              <label for="inv_model">Model</label>
+              <input type="text" id="inv_model" disabled name="inv_model" value="<%= locals.inv_model %>" required pattern="[a-zA-Z0-9\s]*" title="Model must contain only letters, numbers, and spaces" minlength="3" maxlength="30" placeholder="min 3 characters">
+            </div>
+         
+            <div class="form-group">
+              <label for="inv_year">Year</label>
+              <input type="text" id="inv_year" disabled name="inv_year" required pattern="[0-9]*" value="<%= locals.inv_year %>" title="Year must contain only numbers" minlength="4" maxlength="4" placeholder="4 digits">
+            </div>
+
+            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"  >Delete Vehicle</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/inv-update.js"></script>
+
