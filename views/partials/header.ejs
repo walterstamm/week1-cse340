@@ -1,4 +1,15 @@
 <header id="top-header">
   <div class="logo">CSE Motors</div>
-  <div class="account-link"><a href="/account/login">My account</a></div>
+  <% if (locals.loggedIn) { %>
+    <div class="account-links-container">
+      <div class="account-link"><a href="/account/">My account</a></div>
+      <div class="account-link"><a href="/account/logout">Logout</a></div>
+    </div>
+  <% } else { %>
+    <div class="account-link"><a href="/account/login">My account</a></div>
+  <% } %>
+
+ 
+
 </header>
+

@@ -15,6 +15,7 @@ async function buildLogin(req, res, next) {
       nav,
       errors: null,
       notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin
     })
   }
 
@@ -26,6 +27,7 @@ async function buildLogin(req, res, next) {
       nav,
       errors: null,
       notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin
     })
   }
   
@@ -41,6 +43,7 @@ async function buildRegister(req, res, next) {
     nav,
     errors: null,
     notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -62,6 +65,7 @@ async function buildRegister(req, res, next) {
          title: "Registration",
       nav,
       errors: null,
+      loggedIn: res.locals.loggedin
     })
   }
 
@@ -81,6 +85,7 @@ async function buildRegister(req, res, next) {
         nav,
         errors: null,
         notice: req.flash("notice"),
+        loggedIn: res.locals.loggedin
       })
     } else {
         req.flash("notice", "Sorry, the registration failed.")
@@ -88,6 +93,7 @@ async function buildRegister(req, res, next) {
             title: "Registration",
             nav,
             errors: null,
+            loggedIn: res.locals.loggedin
       })
     }
 
@@ -99,7 +105,6 @@ async function buildRegister(req, res, next) {
 async function accountLogin(req, res) {
   let nav = await utilities.getNav()
   const { email, password } = req.body
-  console.log(email, password)
   const accountData = await accountModel.getAccountByEmail(email)
   if (!accountData) {
    req.flash("notice", "Please check your credentials and try again.")
@@ -109,6 +114,7 @@ async function accountLogin(req, res) {
     errors: null,
     email,
     notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin
    })
   return
   }
@@ -130,6 +136,10 @@ async function accountLogin(req, res) {
 
 
 
+function accountLogout(req, res) {
+  res.clearCookie("jwt")
+  res.redirect("/account/login")
+}
 
 
 
@@ -137,5 +147,4 @@ async function accountLogin(req, res) {
 
 
 
-
-module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin}
+module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout}

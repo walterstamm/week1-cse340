@@ -6,6 +6,11 @@
       <%- include('../partials/header') %>
       <%- include('../partials/navigation') %>
       <main>
+        <% if (typeof notice !== 'undefined') { %>
+          <div class="notice">
+            <%= notice %>
+          </div>
+        <% } %>
         <%- body %>
       </main>
       <%- include('../partials/footer') %>

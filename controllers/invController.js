@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -32,6 +33,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: data.inv_make + " " + data.inv_model,
     nav,
     vehicleDetail,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -47,7 +49,8 @@ invCont.buildManagement = async function (req, res, next) {
       nav: await utilities.getNav(),
       errors: null,
       notice: req.flash("notice"),
-      classificationSelect
+      classificationSelect,
+      loggedIn: res.locals.loggedin
     } 
   )
 }
@@ -62,6 +65,7 @@ invCont.buildAddClassification = async function (req, res, next) {
     nav: await utilities.getNav(),
     errors: null,
     notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -82,6 +86,7 @@ invCont.addClassification = async function (req, res, next) {
     errors: null,
     notice: req.flash("notice"),
     classificationSelect: classificationSelect,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -93,6 +98,7 @@ invCont.buildAddInventory = async function (req, res, next) {
     classificationList: await utilities.buildClassificationList(),
     errors: null,
     notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -117,6 +123,7 @@ invCont.addInventory = async function (req, res, next) {
     errors: null,
     notice: req.flash("notice"),
     classificationSelect: classificationSelect,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -161,7 +168,8 @@ invCont.editInventoryView = async function (req, res, next) {
     inv_price: itemData.inv_price,
     inv_miles: itemData.inv_miles,
     inv_color: itemData.inv_color,
-    classification_id: itemData.classification_id
+    classification_id: itemData.classification_id,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -221,7 +229,8 @@ invCont.updateInventory = async function (req, res, next) {
     inv_price,
     inv_miles,
     inv_color,
-    classification_id
+    classification_id,
+    loggedIn: res.locals.loggedin
     })
   }
 }
@@ -245,7 +254,8 @@ invCont.deleteInventoryView = async function (req, res, next) {
     inv_make: itemData.inv_make,
     inv_model: itemData.inv_model,
     inv_year: itemData.inv_year,
-    classification_id: itemData.classification_id
+    classification_id: itemData.classification_id,
+    loggedIn: res.locals.loggedin
   })
 }
 
@@ -263,6 +273,7 @@ invCont.deleteInventory = async function (req, res, next) {
     errors: null,
     notice: req.flash("notice"),
     classificationSelect: classificationSelect,
+    loggedIn: res.locals.loggedin
   })
 }
 

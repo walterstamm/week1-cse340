@@ -53,7 +53,6 @@ app.use(cookieParser())
 app.use(utilities.checkJWTToken)
 //index route 
 app.get("/", utilities.handleErrors(baseController.buildHome))
-app.get("/",baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
 // route to force a 500 error

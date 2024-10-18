@@ -141,6 +141,42 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ /* ****************************************
+ *  Check Employee
+ * ************************************ */
+ Util.checkEmployee = (req, res, next) => {
+  if (res.locals.accountData.account_type === 'Employee') {
+    next()
+  } else {
+    req.flash("notice", "You are not authorized to access this page.")
+    return res.redirect("/")
+  }
+ }
+
+  /* ****************************************
+ *  Check Admin
+ * ************************************ */
+ Util.checkAdmin = (req, res, next) => {
+  if (res.locals.accountData.account_type === 'Admin') {
+    next()
+  } else {
+    req.flash("notice", "You are not authorized to access this page.")
+    return res.redirect("/")
+  }
+ }
+
+
+  /* ****************************************
+ *  Check permisson to edit inventory
+ * ************************************ */
+ Util.checkInventoryEditPermission = (req, res, next) => {
+  if (res.locals.accountData.account_type === 'Admin' || res.locals.accountData.account_type === 'Employee') {
+    next()
+  } else {
+    req.flash("notice", "You are not authorized to edit this inventory.")
+    return res.redirect("/")
+  }
+ }
 
  
 
