@@ -1,0 +1,45 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+  <% } %>
+
+    <% if (notice) { %>
+        <div class="alert alert-warning">
+          <%= notice %>
+        </div>
+    <% } %>
+      
+
+    <div class="add-inventory-container">
+        <h2>Edit Account Information</h2>
+        <form id="editAccountForm" action="/account/update" method="post" class="form-add-inventory">
+            <div class="form-group">
+                <label for="account_firstname">First Name</label>
+                <input type="text" id="account_firstname" name="account_firstname" value="<%= locals.account_firstname %>" required pattern="[a-zA-Z]*" title="First name must contain only letters" minlength="3" maxlength="30" placeholder="min 3 characters">
+            </div>
+            <div class="form-group">
+              <label for="account_lastname">Last Name</label>
+              <input type="text" id="account_lastname" name="account_lastname" value="<%= locals.account_lastname %>" required pattern="[a-zA-Z]*" title="Last name must contain only letters" minlength="3" maxlength="30" placeholder="min 3 characters">
+            </div>
+            <div class="form-group">
+              <label for="account_email">Email</label>
+              <input type="text" id="account_email" name="account_email" value="<%= locals.account_email %>" required pattern="[a-zA-Z0-9\s]*" title="Email must contain only letters, numbers, and spaces" minlength="3" maxlength="30" placeholder="min 3 characters">
+            </div>
+           
+            <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" disabled >Update Account</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/inv-update.js"></script>

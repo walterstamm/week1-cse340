@@ -22,12 +22,16 @@ async function buildLogin(req, res, next) {
 
   async function buildAccount(req, res, next) {
     let nav = await utilities.getNav()
+    console.log(res.locals.accountData)
     res.render("account/index", {
       title: "Account",
       nav,
       errors: null,
       notice: req.flash("notice"),
-      loggedIn: res.locals.loggedin
+      loggedIn: res.locals.loggedin,
+      first_name_user: res.locals.accountData.account_firstname,
+      last_name_user: res.locals.accountData.account_lastname,
+      account_type: res.locals.accountData.account_type
     })
   }
   

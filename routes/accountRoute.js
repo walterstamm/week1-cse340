@@ -12,5 +12,6 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 router.post('/register', regValidate.registationRules(), regValidate.checkRegData, utilities.handleErrors(accountController.registerAccount))
 router.post("/login", regValidate.loginRules(), regValidate.checkLoginData, utilities.handleErrors(accountController.accountLogin))
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
+router.get("/update", utilities.handleErrors(accountController.buildUpdate))
 
 module.exports = router
