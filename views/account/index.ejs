@@ -22,9 +22,10 @@
     <div class="account-container">
         <h2>Welcome <%= first_name_user %></h2>
         <p>Here you can manage your account information and view your order history.</p>
+
+        <h3>Update Account Information</h3>
+        <p><a href="/account/update">Update Account Information</a></p>
         <% if (account_type === 'Admin' || account_type === 'Employee') { %>
-          <h3>Update Account Information</h3>
-          <p><a href="/account/update">Update Account Information</a></p>
           <h3>Inventory Management</h3>
           <p><a href="/inv">Manage Inventory</a></p>
         <% } %>

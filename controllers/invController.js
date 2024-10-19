@@ -145,9 +145,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
  *  Build edit inventory view
  * ************************** */
 invCont.editInventoryView = async function (req, res, next) {
-  console.log(req.params.invId)
   const inv_id = parseInt(req.params.inv_id)
-  console.log(inv_id)
   let nav = await utilities.getNav()
   const itemData = await invModel.getInventoryByInventoryId(inv_id)
   const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
@@ -240,7 +238,6 @@ invCont.updateInventory = async function (req, res, next) {
  *  delete inventory view
  * ************************** */
 invCont.deleteInventoryView = async function (req, res, next) {
-  console.log(req.params.invId)
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
   const itemData = await invModel.getInventoryByInventoryId(inv_id)

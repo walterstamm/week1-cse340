@@ -22,7 +22,6 @@ async function buildLogin(req, res, next) {
 
   async function buildAccount(req, res, next) {
     let nav = await utilities.getNav()
-    console.log(res.locals.accountData)
     res.render("account/index", {
       title: "Account",
       nav,
@@ -142,7 +141,108 @@ async function accountLogin(req, res) {
 
 function accountLogout(req, res) {
   res.clearCookie("jwt")
-  res.redirect("/account/login")
+  res.redirect("/")
+}
+
+async function updateAccountView(req, res) {
+  let nav = await utilities.getNav()
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin,
+    account_firstname: res.locals.accountData.account_firstname,
+    account_lastname: res.locals.accountData.account_lastname,
+    account_email: res.locals.accountData.account_email,
+    account_id: res.locals.accountData.account_id,
+    loggedIn: res.locals.loggedin
+
+  })
+}
+  
+
+async function updateAccount(req, res) {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  const updateResult = await accountModel.updateAccount(account_firstname, account_lastname, account_email, account_id)
+  const nav = await utilities.getNav()
+  if (updateResult) {
+
+    // Actualiza los datos en res.locals
+    res.locals.accountData.account_firstname = account_firstname
+    res.locals.accountData.account_lastname = account_lastname
+    res.locals.accountData.account_email = account_email
+    
+
+    // Genera un nuevo token con los datos actualizados
+    const updatedAccountData = { ...res.locals.accountData } // Asegúrate de que contenga los campos que necesitas
+    delete updatedAccountData.iat
+    delete updatedAccountData.exp
+    const accessToken = jwt.sign(updatedAccountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+
+    // Guarda el nuevo token en la cookie
+    if (process.env.NODE_ENV === 'development') {
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    } else {
+      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+    }
+    req.flash("notice", "Account updated successfully")
+    res.status(201).render("account/index", {
+      title: "Account",
+      nav,
+      errors: null,
+      notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin,
+      first_name_user: account_firstname,
+      last_name_user: account_lastname,
+      account_type: res.locals.accountData.account_type
+
+    })
+  } else {
+    req.flash("notice", "Account update failed")
+    res.status(501).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin,
+      account_firstname: res.locals.accountData.account_firstname,
+      account_lastname: res.locals.accountData.account_lastname,
+      account_email: res.locals.accountData.account_email,
+      account_id: res.locals.accountData.account_id
+    })
+  }
+}
+
+
+async function changePassword(req, res) {
+  const { account_password, account_id } = req.body
+  let hashedPassword
+     try {
+       // regular password and cost (salt is generated automatically)
+       hashedPassword = await bcrypt.hashSync(account_password, 10)
+     } catch (error) {
+       req.flash("notice", 'Sorry, there was an error processing the registration.')
+       res.status(500).render("account/register", {
+         title: "Registration",
+        nav,
+        errors: null,
+        loggedIn: res.locals.loggedin,
+        notice: req.flash("notice"),
+        account_firstname: res.locals.accountData.account_firstname,
+        account_lastname: res.locals.accountData.account_lastname,
+        account_email: res.locals.accountData.account_email,
+        account_id: res.locals.accountData.account_id
+    })
+  }
+  const changePasswordResult = await accountModel.changePassword(hashedPassword, account_id)
+  if (changePasswordResult) {
+    req.flash("notice", "Password updated successfully")
+    res.status(201).redirect("/account/")
+  } else {
+    req.flash("notice", "Password update failed")
+    res.status(501).redirect("/account/update")
+  }
 }
 
 
@@ -151,4 +251,6 @@ function accountLogout(req, res) {
 
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout, updateAccountView, updateAccount, changePassword}
