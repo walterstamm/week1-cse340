@@ -247,10 +247,42 @@ async function changePassword(req, res) {
 
 
 
+async function buildUserList(req, res) {
+  let nav = await utilities.getNav()
+  const accountList = await accountModel.getAccountList()
+  const userList = utilities.buildUserList(accountList)
+  res.render("account/user-list", {
+    title: "User List",
+    nav,
+    errors: null,
+    notice: req.flash("notice"),
+    loggedIn: res.locals.loggedin,
+    userList: userList
+  })
+}
+
+
+async function changeRoleView(req, res) {
+  let nav = await utilities.getNav()
+  const account_id = req.params.id
+  const accountData = await accountModel.getAccountById(account_id)
+  res.render("account/change-role", {
+    title: "Change Role",
+    nav,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
+    account_type: accountData.account_type,
+    account_id: accountData.account_id
+  })
+}
 
 
 
 
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout, updateAccountView, updateAccount, changePassword}
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout, updateAccountView, updateAccount, changePassword, buildUserList, changeRoleView}

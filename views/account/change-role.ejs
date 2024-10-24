@@ -1,0 +1,34 @@
+<h1><%= title %></h1>
+
+
+
+<div class="add-inventory-container">
+    <h2>Change Role</h2>
+    <form id="editAccountForm" action="/account/change-role" method="post" class="form-add-inventory">
+        <div class="form-group">
+            <label for="account_firstname">First Name</label>
+            <input type="text" id="account_firstname"  disabled name="account_firstname" value="<%= locals.account_firstname %>" required  placeholder="First Name">
+          </div>
+        <div class="form-group">
+          <label for="account_lastname">Last Name</label>
+          <input type="text" id="account_lastname"  disabled name="account_lastname" value="<%= locals.account_lastname %>" required  placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <label for="account_email">Email</label>
+          <input type="email" id="account_email"  disabled name="account_email" value="<%= locals.account_email %>" required placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="account_type">Rol</label>
+            <select id="account_type" name="account_type" required>
+                <option value="Admin" <% if(locals.account_type === 'Admin') { %> selected <% } %>>Admin</option>
+                <option value="Client" <% if(locals.account_type === 'Client') { %> selected <% } %>>Client</option>
+                <option value="Employee" <% if(locals.account_type === 'Employee') { %> selected <% } %>>Employee</option>
+            </select>
+        </div>
+       
+        <input type="hidden" name="account_id" id="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" >Change Role</button>
+        </div>
+    </form>
+</div>

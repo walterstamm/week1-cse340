@@ -75,6 +75,27 @@ async function changePassword(account_password, account_id){
 }
 
 
+async function getAccountList(){
+  try {
+    const sql = "SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account"
+    let result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    return error.message
+  }
+}
 
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, checkExistingEmailUpdate, changePassword }
+async function getAccountById(account_id){
+  try {
+    const sql = "SELECT account_firstname, account_lastname, account_email, account_type FROM account WHERE account_id = $1"
+    const result = await pool.query(sql, [account_id])
+    return result.rows[0]
+  } catch (error) {
+    return error.message
+  }
+}
+
+
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, checkExistingEmailUpdate, changePassword, getAccountList, getAccountById }
