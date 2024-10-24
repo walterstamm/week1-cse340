@@ -168,19 +168,16 @@ async function updateAccount(req, res) {
   const nav = await utilities.getNav()
   if (updateResult) {
 
-    // Actualiza los datos en res.locals
     res.locals.accountData.account_firstname = account_firstname
     res.locals.accountData.account_lastname = account_lastname
     res.locals.accountData.account_email = account_email
     
 
-    // Genera un nuevo token con los datos actualizados
-    const updatedAccountData = { ...res.locals.accountData } // Asegúrate de que contenga los campos que necesitas
+    const updatedAccountData = { ...res.locals.accountData } 
     delete updatedAccountData.iat
     delete updatedAccountData.exp
     const accessToken = jwt.sign(updatedAccountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
 
-    // Guarda el nuevo token en la cookie
     if (process.env.NODE_ENV === 'development') {
       res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
     } else {
@@ -266,6 +263,7 @@ async function changeRoleView(req, res) {
   let nav = await utilities.getNav()
   const account_id = req.params.id
   const accountData = await accountModel.getAccountById(account_id)
+
   res.render("account/change-role", {
     title: "Change Role",
     nav,
@@ -273,8 +271,42 @@ async function changeRoleView(req, res) {
     account_lastname: accountData.account_lastname,
     account_email: accountData.account_email,
     account_type: accountData.account_type,
-    account_id: accountData.account_id
+    account_id: account_id
   })
+}
+
+async function changeRole(req, res) {
+  const { account_type, account_id } = req.body
+  console.log(account_id, 'account_id')
+  const changeRoleResult = await accountModel.changeRole(account_type, account_id)
+  const accountList = await accountModel.getAccountList()
+  const userList = utilities.buildUserList(accountList)
+  const nav = await utilities.getNav()
+  if (changeRoleResult) {
+    req.flash("notice", "Role updated successfully")
+    res.status(201).render("account/user-list", {
+      title: "User List",
+      nav,
+      errors: null,
+      notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin,
+      userList: userList
+    })
+  } else {
+    req.flash("notice", "Role update failed")
+    res.status(501).render("account/change-role", {
+      title: "Change Role",
+      nav,
+      errors: null,
+      notice: req.flash("notice"),
+      loggedIn: res.locals.loggedin,
+      account_firstname: res.locals.accountData.account_firstname,
+      account_lastname: res.locals.accountData.account_lastname,
+      account_email: res.locals.accountData.account_email,
+      account_type: res.locals.accountData.account_type,
+      account_id: res.locals.accountData.account_id
+    })
+  }
 }
 
 
@@ -285,4 +317,4 @@ async function changeRoleView(req, res) {
 
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout, updateAccountView, updateAccount, changePassword, buildUserList, changeRoleView}
+module.exports = { buildLogin, buildRegister, registerAccount, buildAccount , accountLogin, accountLogout, updateAccountView, updateAccount, changePassword, buildUserList, changeRoleView, changeRole}

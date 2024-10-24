@@ -184,7 +184,10 @@ Util.checkJWTToken = (req, res, next) => {
  Util.buildUserList =  function(data){
   let table = '<table class="user-list-table"><thead><tr><th class="table-header">First Name</th><th class="table-header">Last Name</th><th class="table-header">Email</th><th class="table-header">Type</th><th class="table-header">Change Role</th></tr></thead><tbody>'
   data.forEach((row) => {
-    table += '<tr><td class="table-data">' + row.account_firstname + '</td><td class="table-data">' + row.account_lastname + '</td><td class="table-data">' + row.account_email + '</td><td class="table-data">' + row.account_type + '</td><td class="table-data"><a class="change-role-link" href="/account/change-role/' + row.account_id + '">Change Role</a></td></tr>'
+    table += '<tr><td class="table-data">' + row.account_firstname + '</td><td class="table-data">' + row.account_lastname +
+    '</td><td class="table-data">' + row.account_email + '</td><td class="table-data">' + row.account_type + 
+    '</td><td class="table-data"><a class="change-role-link" href="/account/change-role/' + row.account_id + 
+    '">Change Role</a></td></tr>'
   })
   table += '</tbody></table>'
   return table

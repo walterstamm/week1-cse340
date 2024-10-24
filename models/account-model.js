@@ -97,5 +97,14 @@ async function getAccountById(account_id){
 }
 
 
+async function changeRole(account_type, account_id){
+  try {
+    const sql = "UPDATE account SET account_type = $1 WHERE account_id = $2 RETURNING *"
+    return await pool.query(sql, [account_type, account_id])
+  } catch (error) {
+    return error.message
+  }
+}
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, checkExistingEmailUpdate, changePassword, getAccountList, getAccountById }
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, checkExistingEmailUpdate, changePassword, getAccountList, getAccountById, changeRole }
