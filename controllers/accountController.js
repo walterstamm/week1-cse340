@@ -282,14 +282,18 @@ async function changeRole(req, res) {
   const userList = utilities.buildUserList(accountList)
   const nav = await utilities.getNav()
   if (changeRoleResult) {
-    const updatedAccountData = changeRoleResult.rows[0]
-    delete updatedAccountData.iat
-    delete updatedAccountData.exp
-    const accessToken = jwt.sign(updatedAccountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
-    if (process.env.NODE_ENV === 'development') {
-      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-    } else {
-      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+
+    if (res.locals.accountData.account_id == account_id) {
+      console.log("same user")
+      const updatedAccountData = changeRoleResult.rows[0]
+      delete updatedAccountData.iat
+      delete updatedAccountData.exp
+      const accessToken = jwt.sign(updatedAccountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+      if (process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
     }
     req.flash("notice", "Role updated successfully")
     res.status(201).render("account/user-list", {
