@@ -166,21 +166,21 @@
     }
 
     /* User List */
-    .user-list-table {
+     .user-list-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
     }
-
+    
     .user-list-table th, .user-list-table td {
         padding: 10px;
         text-align: left;
+        border: 1px solid #e0e0e0; 
     }
-
+    
     .user-list-table tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-    
 
 }
 
@@ -276,6 +276,30 @@
         margin-top: 10px;
     }
 
+
+
+    /* User List */
+    .user-list-table {
+        display: block;
+        overflow-x: auto;
+        max-width: 90%;
+        justify-items: center;
+    }
+    
+    .user-list-table th, .user-list-table td {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .user-list-table tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px; 
+    }
     
 }
 

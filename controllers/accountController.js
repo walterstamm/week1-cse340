@@ -277,12 +277,20 @@ async function changeRoleView(req, res) {
 
 async function changeRole(req, res) {
   const { account_type, account_id } = req.body
-  console.log(account_id, 'account_id')
   const changeRoleResult = await accountModel.changeRole(account_type, account_id)
   const accountList = await accountModel.getAccountList()
   const userList = utilities.buildUserList(accountList)
   const nav = await utilities.getNav()
   if (changeRoleResult) {
+    const updatedAccountData = changeRoleResult.rows[0]
+    delete updatedAccountData.iat
+    delete updatedAccountData.exp
+    const accessToken = jwt.sign(updatedAccountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+    if (process.env.NODE_ENV === 'development') {
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    } else {
+      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+    }
     req.flash("notice", "Role updated successfully")
     res.status(201).render("account/user-list", {
       title: "User List",
